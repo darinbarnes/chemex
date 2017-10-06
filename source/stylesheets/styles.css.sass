@@ -1,0 +1,60 @@
+// Vendor Plugins
+@import "neat"
+
+//Modules
+@import "modules/colors"
+
+//Partials
+@import "partials/typography"
+@import "partials/grids"
+@import "partials/base"
+
+$article-layout-grid: (columns: 1, gutter: 1rem)
+$article-layout-grid--tablet-up: (columns: 12, gutter: 1rem, media: "(min-width: 768px)")
+$article-layout-grid--desktop-up: (columns: 12, gutter: 1rem, media: "(min-width: 1280px)")
+
+.splash
+  @include grid-container
+
+.hero
+  background-color: $black
+  @include grid-column(1, $article-layout-grid)
+  margin-bottom: 2rem
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(8)
+    @include grid-push(1)
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(4)
+    @include grid-push(2)
+
+.hero_header
+  font: $font-body
+  color: $pink
+
+.hero_body
+  font: $font-body
+  color: white
+
+.process
+  @include grid-container
+
+.process_header
+  @include grid-column(1, $article-layout-grid)
+
+.process_steps
+  @include grid-container
+
+.process_step1
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
+
+.process_step2
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
+
+.process_step3
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
