@@ -13,13 +13,129 @@ $article-layout-grid: (columns: 1, gutter: 1rem)
 $article-layout-grid--tablet-up: (columns: 12, gutter: 1rem, media: "(min-width: 768px)")
 $article-layout-grid--desktop-up: (columns: 12, gutter: 1rem, media: "(min-width: 1280px)")
 
-.splash
+//*
+  background: #000 !important
+  color: #0f0 !important
+  outline: solid #f00 1px !important
+
+@mixin linear-gradient($direction, $color-stops...)
+  background: nth(nth($color-stops, 1), 1)
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops)
+  background: linear-gradient($direction, $color-stops)
+
+h1
+  margin: 0
+
+h5
+  margin: 0
+
+p
+  margin: 0
+
+a, a:visited, a:hover, a:active
+  color: white
+  text-decoration: none
+
+.btn_solid
+  height: 1.5em
+  border-radius: 4px
+  font-family: $font-header
+  font-size: 1.5em
+  letter-spacing: .05em
+  text-transform: uppercase
+  align-items: center
+
+.section_subtitle
+  font-family: $font-header
+  -webkit-font-smoothing: antialiased
+  text-transform: uppercase
+  font-size: 1.7em
+  color: $pink
+  letter-spacing: .02em
+  list-style-type: none
+  text-decoration: none
+  text-align: center
+
+.section_body
+  font-size: 1.25em
+  font-family: $font-body
+  color: $black
+  -webkit-font-smoothing: antialiased
+
+.section_bodyWhite
+  font-family: $font-body
+  font-size: 1.25em
+  color: white
+  -webkit-font-smoothing: antialiased
+
+header
+  //@include grid-visual
   @include grid-container
+  background-color: #0E1828
+  background-image: image-url("bg_header_mobile.jpg")
+  background-position: center bottom
+  background-repeat: no-repeat
+  background-size: cover
+  height: 800px
+  @media(min-width: 768px)
+    background-image: image-url("bg_header_mobile.jpg")
+    height: 1150px
+    background-position: right bottom
+  @media(min-width: 960px)
+    background-image: image-url("bg_header.jpg")
+    background-position: center bottom
+    height: 960px
+
+.nav-header
+  @include grid-container
+  //@include grid-visual
+  -webkit-font-smoothing: antialiased
+  font-family: $font-header
+  text-transform: uppercase
+  font-size: 1.5em
+  color: white
+  letter-spacing: 0.05em
+
+.logo-header
+  @include grid-column(5)
+  @include grid-push(1)
+  padding-top: 1em
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(1)
+    @include grid-push(.5)
+
+.nav-home
+  display: none
+  @include grid-media($article-layout-grid--desktop-up)
+    display: inline-table
+    @include grid-column(6)
+
+.nav-home ul li
+  list-style: none
+  display: inline-table
+  margin-left: 1em
+  vertical-align: middle
+
+.nav-shop
+  @include grid-column(5)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(5)
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(4)
+
+.nav-shop ul li
+  text-align: right
+  list-style: none
+
+.nav-shop ul li a
+  text-decoration: none
+  color: white
 
 .hero
-  background-color: $black
+  //@include grid-visual
+  @include grid-container
   @include grid-column(1, $article-layout-grid)
-  margin-bottom: 2rem
+  margin-bottom: 2em
   @include grid-media($article-layout-grid--tablet-up)
     @include grid-column(8)
     @include grid-push(1)
@@ -28,33 +144,377 @@ $article-layout-grid--desktop-up: (columns: 12, gutter: 1rem, media: "(min-width
     @include grid-push(2)
 
 .hero_header
-  font: $font-body
+  margin-left: .5em
+  margin-top: .5em
+  margin-bottom: .75em
+  font-family: $font-body
   color: $pink
+  font-size: 2.5em
+  line-height: 1.5em
+  letter-spacing: .05em
+  -webkit-font-smoothing: antialiased
+  @media(min-width: 768px)
+    margin-top: 1.5em
+    font-size: 3.5em
+    line-height: 1.5em
+    letter-spacing: .05em
 
 .hero_body
-  font: $font-body
+  font-family: $font-body
   color: white
+  font-size: 1.4em
+  line-height: 1.25em
+  -webkit-font-smoothing: antialiased
+  @media(min-width: 768px)
+    font-size: 1.4em
+    letter-spacing: 0em
+
+.splash .hero_body
+  font-size: 1.4em
+  margin-left: 1em
+  margin-bottom: 1em
+
+.splash .btn_hero
+  @extend .btn_solid
+  line-height: 1.45em
+  border: none
+  padding-left: 2em
+  padding-right: 2em
+  background-color: white
+  color: $black
+  -webkit-font-smoothing: antialiased
+  margin-top: .5em
+  margin-left: 1em
 
 .process
+  background-color: $neutral
   @include grid-container
+  //@include grid-visual
 
-.process_header
+.process .section_header
   @include grid-column(1, $article-layout-grid)
+  padding-top: 1em
+  margin-bottom: .5em
+  font-family: $font-body
+  -webkit-font-smoothing: antialiased
+  color: $pink
+  font-size: 2.25em
+  line-height: 1.75em
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(6)
+    margin-left: 2em
+
+.process .section_subtitle
+  font-size: 1.7em
+  margin-top: 1em
+  margin-bottom: 0.5em
+
+.process_image
+  width: auto
+  height: auto
+
+.crop_image
+  display: block
+  margin-left: auto
+  margin-right: auto
+  height: auto
+  width: 75%
 
 .process_steps
   @include grid-container
+  //@include grid-visual
+
+.process .section_body
+  margin-bottom: 3em
+  @media(min-width: 768px)
+    margin: 0 .5em 3em
+  @media(min-width: 960px)
+    margin: 0 2em 3em
+
+.process .hero_body
+  color: $black
+  font-size: 1.4em
+  margin-bottom: 2em
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(6)
+    margin-left: 3.125em
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(4)
+    margin-left: 3.125em
 
 .process_step1
   @include grid-column(1, $article-layout-grid)
   @include grid-media($article-layout-grid--tablet-up)
-    @include grid-column(3)
+    @include grid-column(4)
 
 .process_step2
   @include grid-column(1, $article-layout-grid)
   @include grid-media($article-layout-grid--tablet-up)
-    @include grid-column(3)
+    @include grid-column(4)
 
 .process_step3
   @include grid-column(1, $article-layout-grid)
   @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(4)
+
+.science
+  @include grid-container
+  //@include grid-visual
+  background: linear-gradient(rgba($black, 0.75), rgba($black, 0.75)), image-url("bg_science_update.jpg")
+  background-position: center top
+  background-repeat: no-repeat
+  background-size: cover
+  height: auto
+  @media(min-width: 768px)
+    background-image: image-url("bg_science_update.jpg")
+    height: auto
+    background-position: center top
+  @media(min-width: 960px)
+    background-position: center top
+    height: auto
+
+.science .section_subtitle
+  font-size: 1.7em
+  margin-top: 1em
+  margin-bottom: 0.5em
+
+.science .section_header
+  padding-top: 1em
+  margin-bottom: .5em
+  margin-left: 2em
+  font-family: $font-body
+  -webkit-font-smoothing: antialiased
+  color: $pink
+  font-size: 2.25em
+  line-height: 1.75em
+  margin-top: 4em
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(8)
+    @include grid-push(1)
+
+.science .hero_body
+  margin-bottom: 1em
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(6)
+    @include grid-push(1)
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(5)
+    @include grid-push(1)
+
+.science_filter
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(6)
+    @include grid-push(1)
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(5)
+    @include grid-push(1)
+
+.science_glass
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(6)
+    @include grid-push(1)
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(5)
+    @include grid-push(1)
+  margin-bottom: 10em
+
+.science .section_subtitle
+  text-align: left
+
+.shop
+  //@include grid-visual
+  background-color: $neutral
+  @include grid-container
+
+.shop .section_header
+  margin-top: 1.5em
+  margin-bottom: .5em
+  font-family: $font-body
+  -webkit-font-smoothing: antialiased
+  color: $pink
+  font-size: 2.25em
+  line-height: 1.75em
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(8)
+    margin-left: 2em
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(6)
+    margin-left: 2em
+
+.shop .hero_body
+  color: $black
+  font-size: 1.4em
+  margin-bottom: 1.25em
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(8)
+    margin-left: 3.125em
+  @include grid-media($article-layout-grid--desktop-up)
+    @include grid-column(4)
+    margin-left: 3.125em
+
+.clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+.prod_image
+  width: auto
+  height: auto
+  margin-bottom: 1em
+
+.prod_title
+  @extend .section_subtitle
+  -webkit-font-smoothing: antialiased
+  color: $black
+
+.prod_price
+  @extend .section_subtitle
+  -webkit-font-smoothing: antialiased
+  color: $pink
+  margin-bottom: .5em
+
+.prod_3cup
+  text-align: center
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
     @include grid-column(3)
+
+.prod_6cup
+  text-align: center
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
+
+.prod_8cup
+  text-align: center
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
+
+.prod_10cup
+  text-align: center
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(3)
+
+.shop .btn_add
+  @extend .btn_solid
+  border: none
+  height: 1.25em
+  font-size: 1.25em
+  padding-left: 1em
+  padding-right: 1em
+  background-color: $black
+  color: white
+  -webkit-font-smoothing: antialiased
+  text-align: center
+  margin-bottom: 4em
+
+.shop .btn_shop
+  @extend .btn_solid
+  padding-left: 2em
+  padding-right: 2em
+  border-color: $black
+  background-color: $neutral
+  border-width: thin
+  color: $black
+  -webkit-font-smoothing: antialiased
+  margin-bottom: 1em
+  margin-left: .75em
+  line-height: 1.35em
+  @media(min-width: 768px)
+    margin-left: 3em
+
+footer
+  @include grid-container
+  //@include grid-visual
+  background-color: $black
+
+.footer-logo
+  padding-top: 2em
+  padding-bottom: 2em
+  color: white
+  font-family: $font-body
+  -webkit-font-smoothing: antialiased
+  font-size: 1em
+  float: none
+  text-align: center
+  @media(min-width: 768px)
+    margin-left: 2em
+    float: left
+    text-align: left
+  //@include grid-column(1, $article-layout-grid)
+  //text-align: center
+  //@include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(4)
+    text-align: left
+    margin-left: 2em
+  //@include grid-media($article-layout-grid--desktop-up)
+    text-align: left
+    @include grid-column(4)
+    margin-left: 2em
+
+.link-block
+  @extend .nav-header
+  padding-top: .75em
+  padding-bottom: 1em
+  font-size: 1.2em
+  line-height: 1.25em
+  text-align: center
+  float: right
+  margin-right: 1em
+  @media(min-width: 960px)
+    padding-top: .75em
+    margin-right: 2em
+    float: right
+    text-align: right
+  //@include grid-column(1, $article-layout-grid)
+  //@include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(8)
+
+.link-block ul li
+  list-style: none
+  display: inline-table
+  margin-left: .5em
+  margin-right: .5em
+  text-align: center
+
+.link-block ul li i
+  margin-left: 0em
+  margin-right: 0em
+  text-align: center
+
+.link-block ul li a
+  color: white
+  text-decoration: none
+
+.social
+  @extend .nav-header
+  @include grid-column(1, $article-layout-grid)
+  @include grid-media($article-layout-grid--tablet-up)
+    @include grid-column(4)
+
+.social ul li
+  list-style: none
+  display: inline-table
+  margin-left: .5em
+  margin-right: .5em
+  text-align: center
+
+.social ul li a
+  color: white
+  text-decoration: none
+  letter-spacing: 1px
+
+.link-block ul li.soc_icon
+  font-size: 1.2em
+  margin-left: 0
+  margin-right: 0
